@@ -4,9 +4,9 @@ import "izitoast/dist/css/iziToast.min.css";
 import { fetchPhotosByQuery } from "./js/pixabay-api.js"
 import { renderImages } from "./js/render-functions.js"
 
-const page = 1 ; 
-const query = null; 
-const totalHits = 0;
+let page = 1 ; 
+let query = null; 
+let totalHits = 0;
 
 const refs = {
     button : document.querySelector('.btn'),
