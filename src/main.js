@@ -5,7 +5,7 @@ import { fetchPhotosByQuery } from "./js/pixabay-api.js"
 import { renderImages } from "./js/render-functions.js"
 
 let page = 1 ; 
-let formQuery = null; 
+let query = null; 
 let totalHits = 0;
 
 const refs = {
@@ -23,9 +23,9 @@ refs.form.addEventListener("submit", handlerEvent);
 async function handlerEvent(event){
     event.preventDefault();
 
-const formQuery = event.currentTarget.elements.query.value.trim();
+const query = event.currentTarget.elements.query.value.trim();
 
-if(formQuery === ""){
+if(query === ""){
     iziToast.show({
         class: "wave-stroke",   
         message: '🚫Sorry, there are no images matching your search query. Please try again!',
@@ -43,7 +43,7 @@ refs.loadButton.classList.add("hidden");
 showLoader();
 
 try{
-    const data = await fetchPhotosByQuery(formQuery, page);
+    const data = await fetchPhotosByQuery(query, page);
 
     if(data.hits.length === 0){
         iziToast.show({
@@ -71,7 +71,7 @@ catch(error) {
  }finally{
     hideLoader();
     refs.form.reset();
-};
+}
 }
 
 async function handlerButton(event){
@@ -79,7 +79,7 @@ page +=1;
 showLoader();
 
 try{
-    const data = await fetchPhotosByQuery(formQuery, page);
+    const data = await fetchPhotosByQuery(query, page);
     renderImages(data.hits, refs.gallery, true);
 
     scrollCollection();
@@ -102,7 +102,7 @@ iziToast.show({
 })
 }finally{
     hideLoader();
-}}
+}};
 
 
 function showLoader() {
