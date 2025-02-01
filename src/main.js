@@ -5,7 +5,7 @@ import { fetchPhotosByQuery } from "./js/pixabay-api.js"
 import { renderImages } from "./js/render-functions.js"
 
 let page = 1 ; 
-let query = null; 
+let formQuery = null; 
 let totalHits = 0;
 
 const refs = {
@@ -43,7 +43,7 @@ refs.loadButton.classList.add("hidden");
 showLoader();
 
 try{
-    const data = await fetchPhotosByQuery(query, page);
+    const data = await fetchPhotosByQuery(formQuery, page);
 
     if(data.hits.length === 0){
         iziToast.show({
@@ -56,7 +56,7 @@ try{
         totalHits = data.totalHits;
         renderImages(data.hits, refs.gallery);
 
-        if(totalHits > page*15){
+        if(totalHits > page * 15){
             refs.loadButton.classList.remove("hidden");
         }
     }
@@ -79,7 +79,7 @@ page +=1;
 showLoader();
 
 try{
-    const data = await fetchPhotosByQuery(query, page);
+    const data = await fetchPhotosByQuery(formQuery, page);
     renderImages(data.hits, refs.gallery, true);
 
     scrollCollection();

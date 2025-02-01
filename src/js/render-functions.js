@@ -7,21 +7,34 @@ const lightbox = new SimpleLightbox('.gallery a', {
 });
 
 
-export function galleryCard({webformatURL,largeImageURL,tags,likes,views,comments,downloads}){
-    return `<div class="card">
-    <div class="card-apperance">
-<a href="${largeImageURL}" class="card-link">
-<img src="${webformatURL}" alt="${tags}">
-</a>
-</div>
-<div class="card-discription">
-<p class="discription">Likes:${likes}</p>
-<p class="discription">Views:${views}</p>
-<p class="discription">Comments:${comments}</p>
-<p class="discription">Downloads:${downloads}</p>
-</div>
-</div>`
-};
+export function galleryCard({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) {
+  return `
+    <div class="card">
+      <div class="card-image">
+        <a href="${largeImageURL}" class="gallery-item-link">
+          <img src="${webformatURL}" alt="${tags}" />
+        </a>
+      </div>
+      <div class="card-body">
+      <p class="card-text">
+        <span class="card-text-label">Likes: </span>
+        <span class="card-text-value">${likes}</span>
+      </p>
+      <p class="card-text">
+        <span class="card-text-label">Comments: </span>
+        <span class="card-text-value">${comments}</span>
+      </p>
+      <p class="card-text">
+        <span class="card-text-label">Views: </span>
+        <span class="card-text-value">${views}</span>
+      </p>
+      <p class="card-text">
+        <span class="card-text-label">Downloads: </span>
+        <span class="card-text-value">${downloads}</span>
+      </p>
+    </div>
+    </div>`;
+}
 
 export function renderImages(images, container, append = false) {
     const imagesMarkup = images.map(galleryCard).join('');

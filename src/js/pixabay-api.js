@@ -12,5 +12,6 @@ export async function fetchPhotosByQuery(searchQuery, page = 1) {
 throw new Error("Sorry, there are no imagies matching your search query. Please try again!")
   }
 }
-  
+
+
 
