@@ -2,7 +2,7 @@
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 import { fetchPhotosByQuery } from "./js/pixabay-api.js"
-import { galleryCard, renderImages } from "./js/render-functions.js"
+import { renderImages } from "./js/render-functions.js"
 
 const page = 1 ; 
 const query = null; 
@@ -43,9 +43,7 @@ refs.loadButton.classList.add("hidden");
 showLoader();
 
 try{
-    const data = await fetchPixabay(query, page);
-
-
+    const data = await fetchPhotosByQuery(query, page);
 
     if(data.hits.length === 0){
         iziToast.show({
@@ -81,7 +79,7 @@ page +=1;
 showLoader();
 
 try{
-    const data = await fetchPixabay(query, page);
+    const data = await fetchPhotosByQuery(query, page);
     renderImages(data.hits, refs.gallery, true);
 
     scrollCollection();
@@ -91,7 +89,7 @@ try{
         iziToast.show({
             title:"Error",
             message:"We're sorry, but you've reached the end of search results.",
-            color: '#ef4040';
+            color: '#ef4040',
             position:"bottomCenter"
         });
     }
@@ -104,7 +102,7 @@ iziToast.show({
 })
 }finally{
     hideLoader();
-}
+}}
 
 
 function showLoader() {
