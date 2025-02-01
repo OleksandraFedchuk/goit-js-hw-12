@@ -23,7 +23,7 @@ refs.form.addEventListener("submit", handlerEvent);
 async function handlerEvent(event){
     event.preventDefault();
 
-    const formQuery = event.currentTarget.elements.query.value.trim();
+const formQuery = event.currentTarget.elements.query.value.trim();
 
 if(formQuery === ""){
     iziToast.show({
