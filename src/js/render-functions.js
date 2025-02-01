@@ -23,9 +23,14 @@ export function galleryCard({webformatURL,largeImageURL,tags,likes,views,comment
 </div>`
 };
 
-export function renderImages(images, container) {
+export function renderImages(images, container, append = false) {
     const imagesMarkup = images.map(galleryCard).join('');
-    container.innerHTML = imagesMarkup;
-  
+
+    if(append){
+      container.insertAdjacentHTML("beforeend", imagesMarkup);
+    }else{
+      container.innerHTML = imagesMarkup;
+    }
+      
     lightbox.refresh();  
   }
